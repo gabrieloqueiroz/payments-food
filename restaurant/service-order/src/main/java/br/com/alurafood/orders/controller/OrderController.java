@@ -4,6 +4,7 @@ import br.com.alurafood.orders.dto.OrderDto;
 import br.com.alurafood.orders.dto.StatusDto;
 import br.com.alurafood.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -55,5 +56,10 @@ public class OrderController {
             service.approvedPaymentOrder(id);
 
             return ResponseEntity.ok().build();
+        }
+
+        @GetMapping("/checklb")
+        public String checkLoadBalance(@Value("${local.server.port}") String port){
+            return String.format("Request answered to instance executing on port %s", port);
         }
 }
