@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/restaurant/restaurant.iml" filepath="$PROJECT_DIR$/restaurant/restaurant.iml" />
       <module fileurl="file://$PROJECT_DIR$/restaurant/service-order/service-order.iml" filepath="$PROJECT_DIR$/restaurant/service-order/service-order.iml" />
-      <module fileurl="file://$PROJECT_DIR$/restaurant/servcice-payment/service-payment.iml" filepath="$PROJECT_DIR$/restaurant/servcice-payment/service-payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/restaurant/service-payment/service-payment.iml" filepath="$PROJECT_DIR$/restaurant/service-payment/service-payment.iml" />
     </modules>
   </component>
 </project>

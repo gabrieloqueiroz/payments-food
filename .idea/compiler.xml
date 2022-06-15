@@ -13,6 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="restaurant" target="17" />
+      <module name="servcice-payment" target="17" />
       <module name="service-order" target="17" />
       <module name="service-payment" target="17" />
     </bytecodeTargetLevel>
@@ -20,6 +21,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="restaurant" options="-parameters" />
+      <module name="servcice-payment" options="-parameters" />
       <module name="service-order" options="-parameters" />
       <module name="service-payment" options="-parameters" />
     </option>

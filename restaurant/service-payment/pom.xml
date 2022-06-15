@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>servcice-payment</artifactId>
+    <artifactId>service-payment</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
