@@ -1,9 +1,11 @@
 package br.com.queirozfood.payments.service;
 
+import br.com.queirozfood.payments.client.OrderClient;
 import br.com.queirozfood.payments.dto.PaymentsDto;
 import br.com.queirozfood.payments.model.Payment;
 import br.com.queirozfood.payments.model.Status;
 import br.com.queirozfood.payments.repository.PaymentRepository;
+import org.hibernate.criterion.Order;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,11 +23,13 @@ public class PaymentService {
 
     private PaymentRepository paymentRepository;
     private ModelMapper modelMapper;
+    private OrderClient orderClient;
 
     @Autowired
-    public PaymentService(PaymentRepository paymentRepository, ModelMapper modelMapper) {
+    public PaymentService(PaymentRepository paymentRepository, ModelMapper modelMapper, OrderClient orderClient) {
         this.paymentRepository = paymentRepository;
         this.modelMapper = modelMapper;
+        this.orderClient = orderClient;
     }
 
     public Page<PaymentsDto> getAllPayments(Pageable pageable){
@@ -58,5 +63,19 @@ public class PaymentService {
 
     public void deletePayment(Long id){
         paymentRepository.deleteById(id);
+    }
+
+    public void confirmPayment(Long id){
+        Optional<Payment> payment = paymentRepository.findById(id);
+
+        if (!payment.isPresent()){
+            throw new EntityNotFoundException();
+        }
+
+        payment.get().setStatus(Status.CONFIRMED);
+        paymentRepository.save(payment.get());
+        orderClient.updatePaidPayment(payment.get().getOrderId());
+
+
     }
 }

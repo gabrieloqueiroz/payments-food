@@ -52,6 +52,11 @@ public class PaymentController {
         return ResponseEntity.ok(paymentService.updatePayment(id, paymentsDto));
     }
 
+    @PatchMapping("/{id}/confirm")
+    public void confirmPayment(@PathVariable @NotNull Long id){
+        paymentService.confirmPayment(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<PaymentsDto> deletePayment(@PathVariable Long id){
         paymentService.deletePayment(id);
