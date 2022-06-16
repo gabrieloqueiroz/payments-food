@@ -13,3 +13,4 @@
 * **Spring Feign** for the integration of services
 * **Spring Validation** for entities
 * **Flyway** for database version control
+* **Swagger** for documentation 

@@ -1,9 +1,9 @@
-package br.com.alurafood.orders.controller;
+package br.com.queirozfood.orders.controller;
 
-import br.com.alurafood.orders.dto.OrderDto;
-import br.com.alurafood.orders.dto.OrderItemDto;
-import br.com.alurafood.orders.dto.StatusDto;
-import br.com.alurafood.orders.service.OrderService;
+import br.com.queirozfood.orders.dto.OrderDto;
+import br.com.queirozfood.orders.dto.OrderItemDto;
+import br.com.queirozfood.orders.dto.StatusDto;
+import br.com.queirozfood.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;

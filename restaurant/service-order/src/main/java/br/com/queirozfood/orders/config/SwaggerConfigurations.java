@@ -1,4 +1,4 @@
-package br.com.alurafood.orders.config;
+package br.com.queirozfood.orders.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class SwaggerConfigurations {
     public Docket orderApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.alurafood.orders"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.queirozfood.orders"))
                 .paths(PathSelectors.ant("/**"))
                 .build();
     }

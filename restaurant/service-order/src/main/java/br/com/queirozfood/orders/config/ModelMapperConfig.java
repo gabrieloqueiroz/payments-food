@@ -1,4 +1,4 @@
-package br.com.alurafood.orders.config;
+package br.com.queirozfood.orders.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

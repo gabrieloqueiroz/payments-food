@@ -1,4 +1,4 @@
-package br.com.alurafood.orders.config;
+package br.com.queirozfood.payments.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +11,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfigurations {
 
     @Bean
-    public Docket orderApi() {
+    public Docket paymentApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.alurafood.orders"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.queirozfood.payments"))
                 .paths(PathSelectors.ant("/**"))
                 .build();
     }

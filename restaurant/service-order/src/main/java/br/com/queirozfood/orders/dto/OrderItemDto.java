@@ -1,4 +1,4 @@
-package br.com.alurafood.orders.dto;
+package br.com.queirozfood.orders.dto;
 
 import lombok.*;
 

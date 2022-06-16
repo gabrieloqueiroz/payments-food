@@ -1,4 +1,4 @@
-package br.com.alurafood.orders.model;
+package br.com.queirozfood.orders.model;
 
 public enum Status {
     REALIZED,
