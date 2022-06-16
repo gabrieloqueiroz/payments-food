@@ -14,3 +14,8 @@
 * **Spring Validation** for entities
 * **Flyway** for database version control
 * **Swagger** for documentation 
+
+## Swagger
+
+> [Order-ms](https://localhost:8082/order-ms/swagger-ui.html)  
+> [Payments-ms](https://localhost:8082/payments-ms/swagger-ui.html)
