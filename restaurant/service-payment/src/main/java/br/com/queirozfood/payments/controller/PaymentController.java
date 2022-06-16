@@ -1,16 +1,14 @@
 package br.com.queirozfood.payments.controller;
 
+import br.com.queirozfood.payments.dto.DetailPaymentDto;
 import br.com.queirozfood.payments.dto.PaymentsDto;
-import br.com.queirozfood.payments.model.Payment;
 import br.com.queirozfood.payments.service.PaymentService;
-import com.sun.jdi.event.ExceptionEvent;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -36,8 +34,8 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaymentsDto> getPaymentById(@PathVariable @NotNull Long id){
-       return ResponseEntity.ok(paymentService.getById(id));
+    public ResponseEntity<DetailPaymentDto> detailPaymentById(@PathVariable @NotNull Long id){
+       return ResponseEntity.ok(paymentService.detailPaymentById(id));
     }
 
     @PostMapping("/create")

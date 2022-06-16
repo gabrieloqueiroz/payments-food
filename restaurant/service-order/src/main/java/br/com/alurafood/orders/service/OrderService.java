@@ -1,6 +1,7 @@
 package br.com.alurafood.orders.service;
 
 import br.com.alurafood.orders.dto.OrderDto;
+import br.com.alurafood.orders.dto.OrderItemDto;
 import br.com.alurafood.orders.dto.StatusDto;
 import br.com.alurafood.orders.model.Order;
 import br.com.alurafood.orders.model.Status;
@@ -73,5 +74,11 @@ public class OrderService {
 
         order.setStatus(Status.PAID);
         repository.updateStatus(Status.PAID, order);
+    }
+
+    public List<OrderItemDto> getOrderItem(Long id) {
+        Order order = repository.byIdWithItems(id);
+        OrderDto orderMap = modelMapper.map(order, OrderDto.class);
+        return orderMap.getItems();
     }
 }

@@ -29,5 +29,5 @@ public class Order {
     private Status status;
 
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
-    private List<orderItem> items = new ArrayList<>();
+    private List<OrderItem> items = new ArrayList<>();
 }

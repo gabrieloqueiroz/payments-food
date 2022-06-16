@@ -1,22 +1,21 @@
 package br.com.queirozfood.payments.service;
 
 import br.com.queirozfood.payments.client.OrderClient;
+import br.com.queirozfood.payments.dto.DetailPaymentDto;
+import br.com.queirozfood.payments.dto.OrderDto;
 import br.com.queirozfood.payments.dto.PaymentsDto;
 import br.com.queirozfood.payments.model.Payment;
 import br.com.queirozfood.payments.model.Status;
 import br.com.queirozfood.payments.repository.PaymentRepository;
-import org.hibernate.criterion.Order;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PaymentService {
@@ -38,11 +37,14 @@ public class PaymentService {
                 .map(payment -> modelMapper.map(payment, PaymentsDto.class));
     }
 
-    public PaymentsDto getById(Long id){
+    public DetailPaymentDto detailPaymentById(Long id){
         Payment payment = paymentRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
-        return modelMapper.map(payment, PaymentsDto.class);
+        List<OrderDto> itemsById = orderClient.getItemsById(payment.getOrderId());
+        PaymentsDto paymentsDto = modelMapper.map(payment, PaymentsDto.class);
+
+        return new DetailPaymentDto(paymentsDto, itemsById);
     }
 
     public PaymentsDto createPayment(PaymentsDto paymentsDto){
@@ -75,8 +77,6 @@ public class PaymentService {
         payment.get().setStatus(Status.CONFIRMED);
         paymentRepository.save(payment.get());
         orderClient.updatePaidPayment(payment.get().getOrderId());
-
-
     }
 
     public void fallBackStatus(Long id) {
