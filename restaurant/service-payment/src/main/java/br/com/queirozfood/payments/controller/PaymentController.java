@@ -3,6 +3,8 @@ package br.com.queirozfood.payments.controller;
 import br.com.queirozfood.payments.dto.PaymentsDto;
 import br.com.queirozfood.payments.model.Payment;
 import br.com.queirozfood.payments.service.PaymentService;
+import com.sun.jdi.event.ExceptionEvent;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,6 +55,7 @@ public class PaymentController {
     }
 
     @PatchMapping("/{id}/confirm")
+    @CircuitBreaker(name = "updateOrder", fallbackMethod = "partiallyConfirmed")
     public void confirmPayment(@PathVariable @NotNull Long id){
         paymentService.confirmPayment(id);
     }
@@ -62,5 +65,9 @@ public class PaymentController {
         paymentService.deletePayment(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    public void partiallyConfirmed(Long id, Exception e){
+        paymentService.fallBackStatus(id);
     }
 }

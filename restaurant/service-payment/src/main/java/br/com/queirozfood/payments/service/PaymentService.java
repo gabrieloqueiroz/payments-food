@@ -78,4 +78,15 @@ public class PaymentService {
 
 
     }
+
+    public void fallBackStatus(Long id) {
+        Optional<Payment> payment = paymentRepository.findById(id);
+
+        if (!payment.isPresent()){
+            throw new EntityNotFoundException();
+        }
+
+        payment.get().setStatus(Status.PARTIALLY_CONFIRMED);
+        paymentRepository.save(payment.get());
+    }
 }
